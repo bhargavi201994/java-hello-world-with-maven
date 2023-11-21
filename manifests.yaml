@@ -1,1 +1,40 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: helloworld 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld 
+          image: mana007.azurecr.io/helloworld
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
 
+// service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: helloworld
+  name: helloworld
+spec:
+    type: LoadBalancer
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    selector:
+        app: helloworld
+
+          
