@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: helloworld 
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: helloworld
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: helloworld 
-          image: mana007.azurecr.io/helloworld
+          image: mana007.azurecr.io/hello-world:latest
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
