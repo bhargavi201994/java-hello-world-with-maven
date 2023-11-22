@@ -23,17 +23,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: hello-world-java
-  name:hello-world-java
+  name: hello-world-java-service
 spec:
-    type: LoadBalancer
-    ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 8080
-    selector:
-        app: hello-world-java
-
+  selector:
+    app: hello-world-java   # Match the labels of your Deployment Pods
+  ports:
+    - protocol: TCP
+      port: 80              # Port on the Service
+      targetPort: 8080      # Port on the Pods
+  type: LoadBalancer           # Type of the Service (other options: NodePort, LoadBalancer, ExternalName)
           
